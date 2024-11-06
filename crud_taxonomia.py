@@ -6,10 +6,12 @@ import pandas as pd
 from functools import partial
 warnings.filterwarnings('ignore')
 
+firebase_credentials = dict(st.secrets["firebase"]['my_project_settings'])
+
 #################################################################
 # Verifique se já existe um app inicializado
 if not firebase_admin._apps:
-    cred = credentials.Certificate('apontamento_horas.json')
+    cred = credentials.Certificate(firebase_credentials)
     firebase_admin.initialize_app(cred)
 
 # Conectar ao Firestore
